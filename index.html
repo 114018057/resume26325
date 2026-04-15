@@ -1,300 +1,158 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <title>個人履歷 - 林品禎</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    body {
-      font-family: "Microsoft JhengHei", Arial, sans-serif;
-      margin: 0;
-      background-color: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      padding: 50px 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人履歷 - 林品禎</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
 
-    .container {
-      width: 900px;
-      background: white;
-      display: flex;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      min-height: 1100px;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang TC", "Microsoft JhengHei", sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        .container { display: flex; max-width: 1000px; margin: 40px auto; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        
+        /* 側邊欄 */
+        .sidebar { width: 35%; background-color: #eef2f3; padding: 40px 30px; display: flex; flex-direction: column; align-items: center; }
+        .sidebar-top { text-align: center; width: 100%; margin-bottom: 30px; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        .name { font-size: 28px; font-weight: bold; color: var(--primary-color); margin-bottom: 5px; }
+        .title { font-size: 16px; color: var(--accent-color); margin-bottom: 20px; }
+        
+        .sidebar-block { width: 100%; margin-bottom: 30px; }
+        .sidebar-block h2 { font-size: 18px; color: var(--primary-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; margin-bottom: 15px; display: flex; align-items: center; }
+        .sidebar-block h2 i { margin-right: 10px; }
+        
+        .info-item { display: flex; align-items: center; margin-bottom: 12px; font-size: 14px; }
+        .info-item i { width: 25px; color: var(--accent-color); }
+        
+        .skills-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { background: white; padding: 5px 12px; border-radius: 20px; font-size: 13px; border: 1px solid #ddd; }
 
-    /* 左側欄位 */
-    .sidebar {
-      width: 32%;
-      background-color: #e0f2f1;
-      display: flex;
-      flex-direction: column;
-    }
+        /* 主要內容區 */
+        .main-content { width: 65%; padding: 50px; }
+        .section { margin-bottom: 35px; }
+        .section-title { font-size: 22px; color: var(--primary-color); border-left: 5px solid var(--accent-color); padding-left: 15px; margin-bottom: 20px; text-transform: uppercase; }
+        
+        .timeline-item { margin-bottom: 20px; position: relative; padding-left: 20px; border-left: 2px solid #eee; }
+        .timeline-date { font-size: 14px; color: #888; font-weight: bold; }
+        .timeline-content h3 { font-size: 18px; color: var(--secondary-color); margin: 5px 0; }
+        .timeline-content p { font-size: 15px; color: #666; }
 
-    .sidebar-top {
-      padding: 40px 20px 20px 20px;
-      text-align: center;
-    }
+        .cert-list { list-style: none; }
+        .cert-list li { margin-bottom: 10px; display: flex; align-items: center; }
+        .cert-list li::before { content: "✓"; color: var(--accent-color); font-weight: bold; margin-right: 10px; }
 
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      margin-bottom: 20px;
-    }
-
-    .name {
-      font-size: 28px;
-      font-weight: bold;
-      color: #2c3e50;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #7f8c8d;
-      margin-top: 5px;
-    }
-
-    .sidebar-block {
-      padding: 20px 25px;
-    }
-
-    .sidebar-block h2 {
-      font-size: 16px;
-      color: #2c3e50;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #b2dfdb;
-      padding-bottom: 5px;
-    }
-
-    .sidebar-block h2 i { color: #00796b; }
-
-    .skills-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .skills-tags span {
-      background: white;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      border: 1px solid #b2dfdb;
-    }
-
-    /* 深藍色聯繫區 */
-    .sidebar-contact {
-      background-color: #1a3a5f;
-      color: white;
-      padding: 30px 25px;
-      margin-top: auto;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 15px;
-      font-size: 13px;
-    }
-
-    /* 右側內容區 */
-    .main-content {
-      width: 68%;
-      padding: 50px;
-    }
-
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section h2 {
-      font-size: 20px;
-      color: #1a3a5f;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-bottom: 2px solid #1a3a5f;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-
-    .item {
-      margin-bottom: 25px;
-    }
-
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 5px;
-    }
-
-    .item-title {
-      font-weight: bold;
-      font-size: 16px;
-      color: #333;
-    }
-
-    .item-date {
-      font-size: 13px;
-      color: #95a5a6;
-    }
-
-    .item-sub {
-      color: #00796b;
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .item-desc {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #555;
-    }
-
-    .course-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .course-name {
-      font-size: 13.5px;
-      color: #555;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .course-name::before {
-      content: "•";
-      color: #00796b;
-      font-weight: bold;
-    }
-
-    button {
-      background: #00796b;
-      color: white;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 12px;
-      transition: 0.3s;
-    }
-
-    button:hover { background: #004d40; }
-  </style>
+        @media (max-width: 768px) {
+            .container { flex-direction: column; margin: 0; }
+            .sidebar, .main-content { width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  
-
-  <div class="sidebar">
+    <div class="container">
+        <aside class="sidebar">
             <div class="sidebar-top">
-                <img src="images/photo.jpg" alt="Profile" class="profile-img">
+                <img src="photo.jpg" alt="Profile" class="profile-img">
                 <div class="name">林品禎</div>
+                <div class="title">亞洲大學 聽力暨語言治療學系</div>
+                
                 <audio controls style="width: 100%; height: 35px; margin-top: 15px;">
                     <source src="mp3/bg.mp3" type="audio/mpeg">
                 </audio>
             </div>
-    <div class="sidebar-block">
-      <h2><i class="fas fa-tools"></i> 專業技能</h2>
-      <div class="skills-tags">
-        <span>英語教學 (A1-A2)</span>
-        <span>解剖構造分析</span>
-        <span>溝通障礙理解</span>
-        <span>聽力路徑研究</span>
-        <span>跨文化溝通</span>
-      </div>
-    </div>
 
-    <div class="sidebar-block">
-      <h2><i class="fas fa-user-circle"></i> 個人簡介</h2>
-      <p id="intro" style="font-size: 13px; line-height: 1.6; color: #555;">
-        對語言治療與復健科學具備高度熱誠，致力於結合解剖學知識與教育實務，為溝通障礙者創造更友善的環境。
-      </p>
-      <button onclick="changeIntro()">更新自傳內容</button>
-    </div>
+            <div class="sidebar-block">
+                <h2><i class="fas fa-user"></i>個人資料</h2>
+                <div class="info-item"><i class="fas fa-id-card"></i> 學號：114018057</div>
+                <div class="info-item"><i class="fas fa-envelope"></i> yong22431671@gmail.com</div>
+                <div class="info-item"><i class="fas fa-map-marker-alt"></i> 台灣，台中市</div>
+            </div>
 
-    <div class="sidebar-contact">
-      <div class="contact-item"><i class="fas fa-graduation-cap"></i> 學號：114018057</div>
-      <div class="contact-item"><i class="fas fa-envelope"></i> example@email.com</div>
-      <div class="contact-item"><i class="fas fa-location-dot"></i> 台灣，台中市</div>
-    </div>
-  </div>
+            <div class="sidebar-block">
+                <h2><i class="fas fa-heart"></i>個人特質</h2>
+                <div class="skills-tags">
+                    <span class="tag">細心且具同理心</span>
+                    <span class="tag">親和接納</span>
+                    <span class="tag">合作互助</span>
+                </div>
+            </div>
 
-  <div class="main-content">
-    <div class="section">
-      <h2><i class="fas fa-university"></i> 教育背景</h2>
-      <div class="item">
-        <div class="item-header">
-          <span class="item-title">亞洲大學</span>
-          <span class="item-date">2025 - 2026 (在學)</span>
-        </div>
-        <div class="item-sub">醫療與健康相關學系</div>
-        <div class="item-desc">深入研究語音產出機制與中樞聽覺系統，具備扎實的臨床預備基礎。</div>
-      </div>
-    </div>
+            <div class="sidebar-block">
+                <h2><i class="fas fa-language"></i>語文能力</h2>
+                <ul class="cert-list" style="font-size: 14px;">
+                    <li>多益藍色證書 765分</li>
+                    <li>JLPT 日檢 N5 合格</li>
+                </ul>
+            </div>
+        </aside>
 
-    <div class="section">
-      <h2><i class="fas fa-briefcase"></i> 專業經歷</h2>
-      <div class="item">
-        <div class="item-header">
-          <span class="item-title">線上英文家教 (Junior High)</span>
-          <span class="item-date">2026.03 - 現在</span>
-        </div>
-        <div class="item-desc">
-          針對國中 A1-A2 等級學生設計互動式教學，運用閱讀策略引導，有效提升學生口語表達能力。
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-header">
-          <span class="item-title">Podcast 跨國教育專案</span>
-          <span class="item-date">2025.12</span>
-        </div>
-        <div class="item-desc">
-          策劃並執行以義大利與澳洲留學經驗為題的英文播客，負責撰寫腳本並進行錄製與發音微調。
-        </div>
-      </div>
-    </div>
+        <main class="main-content">
+            <section class="section">
+                <div class="section-title">個人簡介</div>
+                <p>
+                    目前就讀於亞洲大學聽力暨語言治療學系，正修習聽語專業相關知識。我致力於結合專業知能與個人親和的特質，未來希望成為一名具備溫度的語言治療師，幫助他人克服溝通障礙，重拾健康與自信。
+                </p>
+            </section>
 
-    <div class="section">
-      <h2><i class="fas fa-book"></i> 核心課程與研究</h2>
-      <div class="course-grid">
-        <div class="course-name">發聲週期機制分析</div>
-        <div class="course-name">中樞聽覺通路研究</div>
-        <div class="course-name">顳骨解剖與構造</div>
-        <div class="course-name">上皮組織細胞連接</div>
-        <div class="course-name">動機與情緒心理學</div>
-        <div class="course-name">現代藝術社會分析</div>
-      </div>
-    </div>
+            <section class="section">
+                <div class="section-title">教育背景</div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025 - 現在</div>
+                    <div class="timeline-content">
+                        <h3>亞洲大學</h3>
+                        <p>聽力暨語言治療學系 (在學中)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">畢業</div>
+                    <div class="timeline-content">
+                        <h3>台中市私立曉明女子高級中學</h3>
+                        <p>高級中等學校畢業</p>
+                    </div>
+                </div>
+            </section>
 
-    <div class="section">
-      <h2><i class="fas fa-award"></i> 榮譽與參與</h2>
-      <div class="item-desc">
-        • 協助完成亞大現代美術館宮島達男展覽學習手冊。<br>
-        • 深度分析台灣選舉制度與媒體識讀課題，具備優秀邏輯思辨力。
-      </div>
+            <section class="section">
+                <div class="section-title">活動經歷</div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-content">
+                        <h3>亞大聽語營</h3>
+                        <p>營隊工人：負責營隊執行與專業知識推廣。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">114-2 學期</div>
+                    <div class="timeline-content">
+                        <h3>亞洲大學 AI 雙語學伴計畫</h3>
+                        <p>學伴成員：協助雙語學習交流，運用 AI 工具輔助教學。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">高中時期</div>
+                    <div class="timeline-content">
+                        <h3>曉明女中小百合營</h3>
+                        <p>輔姐：帶領營隊學員，負責活動引導與輔導。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">志工服務</div>
+                    <div class="timeline-content">
+                        <h3>扶少團</h3>
+                        <p>流浪狗之家志工：關懷生命，實踐社會服務。 </p>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-  </div>
-</div>
-
-<script>
-  function changeIntro() {
-    const intro = document.getElementById("intro");
-    intro.innerText = "致力於將科學嚴謹的解剖知識應用於臨床溝通治療，並透過溫暖的教學策略協助學生克服學習障礙。";
-  }
-</script>
 
 </body>
 </html>
